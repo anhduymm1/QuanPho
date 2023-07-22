@@ -1,0 +1,43 @@
+﻿
+@model PWA.Models.Users
+
+
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+             class="img-fluid" alt="Sample image">
+    </div>
+    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+
+        <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-primary h3">Login</p>
+        </div>
+
+        <div class="card-body">
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-outline mb-4">
+                    @Html.TextBoxFor(model => model.UserName, "", new { @class = "form-control form-control-md", @placeholder = "UserName" })
+                </div>
+
+                <div class="form-outline mb-4">
+                    @Html.PasswordFor(model => model.Pass, new { @class = "form-control form-control-md", @placeholder = "Password" })
+                </div>
+                <div class="form-group mt-4 pt-2">
+                    <input type="submit" name="submit" class="btn btn-primary btn-md" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login" />
+                </div>
+            }
+        </div>
+
+        <div class="text-center text-lg-start mt-4 pt-2">
+
+            <p class="small fw-bold mt-2 pt-1 mb-0">
+                Don't have an account? <a href="#!"
+                                          class="link-danger">Register</a>
+            </p>
+        </div>
+
+    </div>
+</div>

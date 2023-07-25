@@ -14,15 +14,16 @@ namespace PWA.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-            //if (Session["UserName"] != null)
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return Redirect("Login");
-            //}
+            //return View();
+
+            if (Session["UserName"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("Login");
+            }
         }
 
 

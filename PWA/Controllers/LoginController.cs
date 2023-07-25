@@ -62,9 +62,9 @@ namespace PWA.Controllers
                 {
                     Session.Clear();
                     ViewBag.error = "Login failed";
-                    return Redirect("Home");
+                    //return Redirect("Home");
 
-                    //return RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
             }
             return View();

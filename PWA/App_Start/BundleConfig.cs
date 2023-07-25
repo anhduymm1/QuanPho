@@ -26,6 +26,8 @@ namespace PWA
             bundles.Add(new Bundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-icons.css",
+                      "~/Content/bootstrap-icons.min.css",
                       "~/Content/Site.css"));
         }
     }

@@ -51,8 +51,8 @@ namespace PWA.Controllers
                     }
                 }
             }
-                return View(phos);
+            return View(phos);
         }
-     
+
     }
 }

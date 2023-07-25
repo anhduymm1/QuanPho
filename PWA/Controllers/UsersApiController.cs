@@ -28,12 +28,22 @@ namespace PWA.Controllers
                     {
                         while (reader.Read())
                         {
+                            string roleid = "";
+                            if (reader["Role_ID"].ToString() == "1") {
+                                roleid = "Admin";
+                            }
+                            else
+                            {
+                                roleid = "User";
+                            }
                             Users user = new Users
                             {
+                               
                                 UserID = Convert.ToInt32(reader["UserID"]),
                                 FullName = reader["FullName"].ToString(),
                                 UserName = reader["UserName"].ToString(),
                                 Phone = reader["Phone"].ToString(),
+                                Role_ID =roleid
                             };
 
                             users.Add(user);

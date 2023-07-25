@@ -14,7 +14,7 @@ namespace PWA.Controllers
       
         public ActionResult Index()
         {
-            if (Session["Role_ID"] != null && (int)Session["Role_ID"] == 1)
+            if (Session["Role_ID"] != null && (string)Session["Role_ID"] == "1")
             {
                 return View();
 

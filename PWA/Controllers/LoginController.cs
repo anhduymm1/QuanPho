@@ -42,7 +42,7 @@ namespace PWA.Controllers
                             {
                                 users.FullName = reader["FullName"].ToString();
                                 users.UserName = reader["UserName"].ToString();
-                                users.Role_ID = Convert.ToInt32(reader["Role_ID"]);
+                                users.Role_ID = reader["Role_ID"].ToString();
                                 checked_login = true;
                             }
 

@@ -22,7 +22,7 @@ namespace PWA.Models
         [Required]
         [StringLength(10, MinimumLength = 10)]
         public string Phone { get; set; }
-        public int Role_ID { get; set; }
+        public string Role_ID { get; set; }
 
     }
 }

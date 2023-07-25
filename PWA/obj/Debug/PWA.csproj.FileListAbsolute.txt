@@ -178,3 +178,9 @@ C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Web.Http.WebHost.dll
 C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Net.Http.Formatting.xml
 C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Web.Http.xml
 C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Web.Http.WebHost.xml
+D:\WEB\QuanPho\PWA\bin\System.Net.Http.Formatting.dll
+D:\WEB\QuanPho\PWA\bin\System.Web.Http.dll
+D:\WEB\QuanPho\PWA\bin\System.Web.Http.WebHost.dll
+D:\WEB\QuanPho\PWA\bin\System.Net.Http.Formatting.xml
+D:\WEB\QuanPho\PWA\bin\System.Web.Http.xml
+D:\WEB\QuanPho\PWA\bin\System.Web.Http.WebHost.xml

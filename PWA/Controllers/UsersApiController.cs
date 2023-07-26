@@ -29,7 +29,8 @@ namespace PWA.Controllers
                         while (reader.Read())
                         {
                             string roleid = "";
-                            if (reader["Role_ID"].ToString() == "1") {
+                            if (reader["Role_ID"].ToString() == "1")
+                            {
                                 roleid = "Admin";
                             }
                             else
@@ -72,12 +73,12 @@ namespace PWA.Controllers
             return maxID;
         }
 
-        public bool checkUserNameUnique( string username)
+        public bool checkUserNameUnique(string username)
         {
             bool flat = false;
             using (SqlConnection connection = new SqlConnection(PhoController.connectionString))
             {
-                string sqlQuery = "SELECT top (1) * FROM Data_User where UserName = '"+username+"'";
+                string sqlQuery = "SELECT top (1) * FROM Data_User where UserName = '" + username + "'";
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
                     connection.Open();
@@ -99,7 +100,7 @@ namespace PWA.Controllers
         public bool createUser(Users users)
         {
             bool check = false;
-            if(checkUserNameUnique(users.UserName) == false)
+            if (checkUserNameUnique(users.UserName) == false)
             {
                 using (SqlConnection connection = new SqlConnection(PhoController.connectionString))
                 {
@@ -120,7 +121,39 @@ namespace PWA.Controllers
 
                 }
             }
-           
+
+            return check;
+        }
+        [Route("updateUser")]
+        [HttpPost]
+        public bool updateUser(Users users)
+        {
+            bool check = false;
+            if (checkUserNameUnique(users.UserName) == true)
+            {
+                using (SqlConnection connection = new SqlConnection(PhoController.connectionString))
+                {
+                    string sqlQuery = "UPDATE Data_User SET FullName = @FullName, Phone = @Phone, Role_ID = @RoleID WHERE UserName = @UserName";
+
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                    {
+                        try
+                        {
+                            connection.Open();
+                            command.Parameters.AddWithValue("@FullName", users.FullName);
+                            command.Parameters.AddWithValue("@Phone", users.Phone);
+                            command.Parameters.AddWithValue("@RoleID", users.Role_ID);
+                            command.Parameters.AddWithValue("@UserName", users.UserName);
+                            command.ExecuteNonQuery();
+                            check = true;   
+                        }
+                        catch
+                        {
+                            check=false;
+                        } 
+                    }
+                }
+            }
             return check;
         }
 

@@ -21,7 +21,7 @@ namespace PWA.Controllers
             }
             else
             {
-                return Redirect("Login");
+                return RedirectToAction("Index", "Login");
             }
         }
 

@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css {
-    <link href="~/Views/Admin/css/users.css" rel="stylesheet" />
+    <link href="~/Content/css/adminUser.css" rel="stylesheet" />
 }
 
 <div class="container" style="height:90%">
@@ -12,12 +12,12 @@
             <div class="card p-3">
                 <div class="e-navlist e-navlist--active-bg">
                     <ul class="navbar-nav me-auto my-2 my-lg-0">
-                        <li class="nav-item" id="item-nav">
+                        <li class="nav-item item-nav-hover" >
                             <a class="nav-link px-2 active" href="Admin">
                                 <i style="margin-right: 10px" class="bi bi-people"></i><span>Người dùng</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item item-nav-hover">
                             <a class="nav-link px-2" href="#">
                                 <i style="margin-right: 10px" class="bi bi-card-checklist"></i><span>Món</span>
                             </a>
@@ -66,7 +66,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center px-xl-3">
-                                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#userformmodal">Thêm mới</button>
+                                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#userformmodal" id="addNewButton">Thêm mới</button>
                             </div>
                             <hr class="my-3" />
                             <div class="e-navlist e-navlist--active-bold">
@@ -163,7 +163,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="mb-3">
-                                                        <div class="form-group">
+                                                        <div class="form-group" id="group-password">
                                                             <label class="form-label" for="password">Mật khẩu</label>
                                                             <div class="input-group">
                                                                 <input type="password" id="password" class="form-control" />
@@ -180,7 +180,8 @@
 
                                     <div class="row">
                                         <div class="col d-flex justify-content-end">
-                                            <button class="btn btn-primary" data-bs-dismiss="modal" type="button" aria-label="Close" onclick="createUser()">Lưu</button>
+                                            <button class="btn btn-primary" data-bs-dismiss="modal" type="button" aria-label="Close" onclick="createUser()" id="save">Lưu</button>
+                                            <button class="btn btn-success" data-bs-dismiss="modal" type="button" aria-label="Close" id="update" onclick="updateUser()">Cập nhật</button>
                                         </div>
                                     </div>
                                 </form>
@@ -194,161 +195,7 @@
 </div>
 </div>
 @section scripts {
-    <script>
-        $("document").ready(function () {
-            getListUser();
-        });
-        function getListUser() {
-            $.ajax({
-                url: 'getListUser',
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    var tableBody = document.querySelector(".table-bordered tbody");
-
-                    // Xóa hết nội dung bảng cũ trước khi đổ dữ liệu mới
-                    tableBody.innerHTML = "";
-
-                    // Duyệt qua từng đối tượng trong mảng data
-                    data.forEach(function (item, index) {
-                        // Tạo một hàng mới trong bảng
-                        var row = document.createElement("tr");
-
-                        // Tạo các ô dữ liệu cho hàng
-                        var sttCell = document.createElement("td");
-                        sttCell.textContent = index + 1;
-                        row.appendChild(sttCell);
-
-                        var userNameCell = document.createElement("td");
-                        userNameCell.textContent = item.UserName;
-                        row.appendChild(userNameCell);
-
-                        var fullNameCell = document.createElement("td");
-                        fullNameCell.textContent = item.FullName;
-                        row.appendChild(fullNameCell);
-
-                        var phoneCell = document.createElement("td");
-                        phoneCell.textContent = item.Phone;
-                        row.appendChild(phoneCell);
-
-                        var roleCell = document.createElement("td");
-                        roleCell.textContent = item.Role_ID;
-                        row.appendChild(roleCell);
-
-                        var editCell = document.createElement("td");
-                        var editButton = document.createElement("button");
-                        editButton.className = "btn btn-info";
-                        editButton.type = "button";
-                        var editIcon = document.createElement("i");
-                        editIcon.className = "bi bi-pencil";
-                        editButton.appendChild(editIcon);
-                        editCell.appendChild(editButton);
-                        //editButton.addEventListener("click", function () {
-                        //    // Hàm xử lý sự kiện khi click nút Edit
-                        //    // Ví dụ: Mở modal để chỉnh sửa thông tin user
-                        //    // ...
-                        //});
-                        editCell.appendChild(editButton);
-                        row.appendChild(editCell);
-
-
-                        var deleteCell = document.createElement("td");
-                        var deleteButton = document.createElement("button");
-                        deleteButton.className = "btn btn-danger";
-                        deleteButton.type = "button";
-                        var deleteIcon = document.createElement("i");
-                        deleteIcon.className = "bi bi-trash";
-                        deleteButton.appendChild(deleteIcon);
-                        deleteCell.appendChild(deleteButton);
-                        deleteButton.addEventListener("click", function () {
-                            if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
-                                // Nếu người dùng chọn "OK" trong hộp thoại confirm, thực hiện xóa người dùng
-                                deleteUser(item.UserName);
-                            }
-                        });
-                        row.appendChild(deleteCell);
-
-                        // Thêm hàng vào bảng
-                        tableBody.appendChild(row);
-                    });
-                },
-                error: function () {
-                    // Xử lý lỗi nếu có
-                    console.log('Không thể lấy dữ liệu từ API.');
-                }
-            });
-        }
-
-        function createUser() {
-            const taikhoan = document.getElementById('username').value
-            const hoten = document.getElementById('name').value
-            const sdt = document.getElementById('phone').value
-            const matkhau = document.getElementById('password').value
-            const vaitro = document.getElementById('inputGroupSelect01').value
-
-            const data = {
-                FullName: hoten,
-                UserName:  taikhoan,
-                Pass: matkhau,
-                Phone: sdt,
-                Role_ID: vaitro
-            }
-
-            $.ajax({
-                url: 'createUser',
-                type: 'POST',
-                dataType: 'json',
-                data: data,
-                success: function (data) {
-                    console.log(data)
-                    if (data == true) {
-                        getListUser()
-                    }
-                },
-                error: function () {
-                    // Xử lý lỗi nếu có
-                    console.log('Không thể lấy dữ liệu từ API.');
-                }
-            });
-
-
-        }
-
-        function deleteUser(taikhoan) {
-            const data = {
-                UserName: taikhoan,      
-            }
-
-            $.ajax({
-                url: 'deleteUser',
-                type: 'POST',
-                dataType: 'json',
-                data: data,
-                success: function (data) {
-                    console.log(data)
-                    if (data == true) {
-                        getListUser()
-                    }
-                },
-                error: function () {
-                    // Xử lý lỗi nếu có
-                    console.log('Không thể lấy dữ liệu từ API.');
-                }
-            });
-        }
-
-        document.getElementById("togglePassword").addEventListener("click", function () {
-            const passwordInput = document.getElementById("password");
-            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-            passwordInput.setAttribute("type", type);
-
-            // Change the eye icon based on password visibility
-            this.classList.toggle("bi-eye");
-            this.classList.toggle("bi-eye-slash");
-        });
-
-
-    </script>
+    <script src="~/Content/js/adminUser.js"></script>
 }
 
 

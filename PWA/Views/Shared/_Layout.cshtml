@@ -29,18 +29,18 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
-                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link white" })</li>
                         @if ((string)Session["Role_ID"] == "1")
                         {
-                            <li class="nav-item">@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link white" })</li>
                         }
-                        <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link white" })</li>
                     </ul>
                     <!-- User icon with dropdown menu -->
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person"></i>
-                            <span>@Session["UserName"]</span>
+                            <i class="bi bi-person white"></i>
+                            <span class="white">@Session["UserName"]</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="#">Thông tin</a></li>

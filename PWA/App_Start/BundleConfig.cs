@@ -20,6 +20,7 @@ namespace PWA
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
+                       "~/Scripts/popper.js",
                       "~/Scripts/bootstrap.min.js"
                       ));
 

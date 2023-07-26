@@ -15,6 +15,7 @@ namespace PWA.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            Session.Clear();
             return View();
         }
 

@@ -12,39 +12,63 @@
     <meta name="theme-color" content="#2196f3" />
 </head>
 <body>
-    <div class="navbar navbar-expand-lg bg-body-tertiary navbar-color">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
-                </ul>
+    @{
+        // Lấy tên của action và controller hiện tại
+        string currentAction = ViewContext.RouteData.GetRequiredString("action");
+        string currentController = ViewContext.RouteData.GetRequiredString("controller");
+    }
+    @if (currentController != "Login")
+    {
+        <div class="navbar navbar-expand-lg bg-body-tertiary navbar-color sticky-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                        @if ((string)Session["Role_ID"] == "1")
+                        {
+                            <li class="nav-item">@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link" })</li>
+                        }
+                        <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                    </ul>
+                    <!-- User icon with dropdown menu -->
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person"></i>
+                            <span>@Session["UserName"]</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">Thông tin</a></li>
+                            <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li> @Html.ActionLink("Đăng xuất", "Index", "Login", null, new { @class = "dropdown-item" })</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
+    }
+
     <div class="container body-content">
         @RenderBody()
     </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-        <script>
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker
-                    .register('/serviceworker.js')
-                    .then(function () { console.log('Service Worker Registered'); });
-            }
-        </script>
-      
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
 
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/serviceworker.js')
+                .then(function () { console.log('Service Worker Registered'); });
+        }
+    </script>
 </body>
 </html>

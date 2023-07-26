@@ -133,13 +133,13 @@
                                                 <div class="col">
                                                     <div class="mb-3">
                                                         <label class="form-label">Tài khoản</label>
-                                                        <input class="form-control" type="text" name="username" />
+                                                        <input class="form-control" type="text" name="username" id="username"/>
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="mb-3">
                                                         <label class="form-label">Họ tên</label>
-                                                        <input class="form-control" type="text" name="name" />
+                                                        <input class="form-control" type="text" name="name" id="name"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,7 +147,7 @@
                                                 <div class="col">
                                                     <div class="mb-3">
                                                         <label class="form-label">Số điện thoại</label>
-                                                        <input class="form-control" type="text" />
+                                                        <input class="form-control" type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" id="phone"/>
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -180,7 +180,7 @@
 
                                     <div class="row">
                                         <div class="col d-flex justify-content-end">
-                                            <button class="btn btn-primary" data-bs-dismiss="modal" type="button" aria-label="Close">Lưu</button>
+                                            <button class="btn btn-primary" data-bs-dismiss="modal" type="button" aria-label="Close" onclick="createUser()">Lưu</button>
                                         </div>
                                     </div>
                                 </form>
@@ -196,12 +196,12 @@
 @section scripts {
     <script>
         $("document").ready(function () {
-            callAPI();
+            getListUser();
         });
-        function callAPI() {
+        function getListUser() {
             $.ajax({
                 url: 'getListUser',
-                type: 'GET',
+                type: 'POST',
                 dataType: 'json',
                 success: function (data) {
                     var tableBody = document.querySelector(".table-bordered tbody");
@@ -260,11 +260,75 @@
                         deleteIcon.className = "bi bi-trash";
                         deleteButton.appendChild(deleteIcon);
                         deleteCell.appendChild(deleteButton);
+                        deleteButton.addEventListener("click", function () {
+                            if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+                                // Nếu người dùng chọn "OK" trong hộp thoại confirm, thực hiện xóa người dùng
+                                deleteUser(item.UserName);
+                            }
+                        });
                         row.appendChild(deleteCell);
 
                         // Thêm hàng vào bảng
                         tableBody.appendChild(row);
                     });
+                },
+                error: function () {
+                    // Xử lý lỗi nếu có
+                    console.log('Không thể lấy dữ liệu từ API.');
+                }
+            });
+        }
+
+        function createUser() {
+            const taikhoan = document.getElementById('username').value
+            const hoten = document.getElementById('name').value
+            const sdt = document.getElementById('phone').value
+            const matkhau = document.getElementById('password').value
+            const vaitro = document.getElementById('inputGroupSelect01').value
+
+            const data = {
+                FullName: hoten,
+                UserName:  taikhoan,
+                Pass: matkhau,
+                Phone: sdt,
+                Role_ID: vaitro
+            }
+
+            $.ajax({
+                url: 'createUser',
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    console.log(data)
+                    if (data == true) {
+                        getListUser()
+                    }
+                },
+                error: function () {
+                    // Xử lý lỗi nếu có
+                    console.log('Không thể lấy dữ liệu từ API.');
+                }
+            });
+
+
+        }
+
+        function deleteUser(taikhoan) {
+            const data = {
+                UserName: taikhoan,      
+            }
+
+            $.ajax({
+                url: 'deleteUser',
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    console.log(data)
+                    if (data == true) {
+                        getListUser()
+                    }
                 },
                 error: function () {
                     // Xử lý lỗi nếu có
@@ -282,6 +346,8 @@
             this.classList.toggle("bi-eye");
             this.classList.toggle("bi-eye-slash");
         });
+
+
     </script>
 }
 

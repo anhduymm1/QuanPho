@@ -210,6 +210,7 @@
     <Content Include="Content\fonts\bootstrap-icons.woff" />
     <Content Include="Content\fonts\bootstrap-icons.woff2" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -224,6 +225,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.js" />
     <Content Include="seviceworker.js" />
     <Content Include="Views\Admin\css\users.css" />
     <Content Include="Web.config" />

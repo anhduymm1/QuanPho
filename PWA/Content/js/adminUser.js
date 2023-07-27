@@ -38,38 +38,56 @@ function getListUser() {
                 roleCell.textContent = item.Role_ID;
                 row.appendChild(roleCell);
 
-                var editCell = document.createElement("td");
+                var actionCell = document.createElement("td");
+                actionCell.style.display = "flex";
+                actionCell.style.justifyContent = "center";
+
+                // Edit button
                 var editButton = document.createElement("button");
                 editButton.className = "btn btn-info";
                 editButton.type = "button";
                 var editIcon = document.createElement("i");
                 editIcon.className = "bi bi-pencil color-white";
                 editButton.appendChild(editIcon);
-                editCell.appendChild(editButton);
                 editButton.addEventListener("click", function () {
                     var userFormModal = new bootstrap.Modal(document.getElementById("userformmodal"));
                     userFormModal.show();
-                    detailUser(item.UserName, item.FullName, item.Phone, item.Role_ID)
+                    detailUser(item.UserName, item.FullName, item.Phone, item.Role_ID);
                 });
-                editCell.appendChild(editButton);
-                row.appendChild(editCell);
+                actionCell.appendChild(editButton);
 
-
-                var deleteCell = document.createElement("td");
+                // Delete button
                 var deleteButton = document.createElement("button");
-                deleteButton.className = "btn btn-danger";
+                deleteButton.className = "btn btn-danger ms-2";
                 deleteButton.type = "button";
                 var deleteIcon = document.createElement("i");
                 deleteIcon.className = "bi bi-trash";
                 deleteButton.appendChild(deleteIcon);
-                deleteCell.appendChild(deleteButton);
                 deleteButton.addEventListener("click", function () {
                     if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
                         // Nếu người dùng chọn "OK" trong hộp thoại confirm, thực hiện xóa người dùng
                         deleteUser(item.UserName);
                     }
                 });
-                row.appendChild(deleteCell);
+                actionCell.appendChild(deleteButton);
+
+                // Reset Password button
+                var resetPassButton = document.createElement("button");
+                resetPassButton.className = "btn btn-success ms-2";
+                resetPassButton.type = "button";
+                var resetPassIcon = document.createElement("i");
+                resetPassIcon.className = "bi bi-arrow-counterclockwise";
+                resetPassButton.appendChild(resetPassIcon);
+                resetPassButton.addEventListener("click", function () {
+                    if (confirm("Bạn có chắc chắn muốn cập nhật mật khẩu của người dùng này?")) {
+                        // Nếu người dùng chọn "OK" trong hộp thoại confirm, thực hiện xóa người dùng
+                        resetPassword(item.UserName);
+                    }
+                });
+                actionCell.appendChild(resetPassButton);
+
+                
+                row.appendChild(actionCell);
 
                 // Thêm hàng vào bảng
                 tableBody.appendChild(row);
@@ -188,6 +206,29 @@ function detailUser(taikhoan, hoten, sdt, vaitro) {
     document.getElementById("update").style.display = 'block'
 }
 
+function resetPassword(taikhoan) {
+    const data = {
+        UserName: taikhoan,
+    }
+
+    $.ajax({
+        url: 'resetPassword',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        success: function (data) {
+            console.log(data)
+            if (data == true) {
+                getListUser()
+            }
+        },
+        error: function () {
+            // Xử lý lỗi nếu có
+            console.log('Không thể lấy dữ liệu từ API.');
+        }
+    });
+}
+
 document.getElementById("togglePassword").addEventListener("click", function () {
     const passwordInput = document.getElementById("password");
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
@@ -208,8 +249,18 @@ document.getElementById("userformmodal").addEventListener("show.bs.modal", funct
 });
 
 document.getElementById("addNewButton").addEventListener("click", function () {
+
+    document.getElementById('username').disabled = false;
+    document.getElementById('username').value = ''
+    document.getElementById('name').value = ''
+    document.getElementById('phone').value = ''
+    document.getElementById('group-password').value = ''
+    document.getElementById('group-password').style.display = 'block'
+
+    document.getElementById('inputGroupSelect01').value = '2'
+
     document.getElementById("save").style.display = 'block'
-    document.getElementById("update").style.display = 'none';
+    document.getElementById("update").style.display = 'none'
 });
 
 

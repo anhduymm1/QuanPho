@@ -184,5 +184,36 @@ namespace PWA.Controllers
             }
             return check;
         }
+
+        [Route("resetPassword")]
+        [HttpPost]
+        public bool resetPassword(Users users)
+        {
+            bool check = false;
+            if (checkUserNameUnique(users.UserName) == true)
+            {
+                using (SqlConnection connection = new SqlConnection(PhoController.connectionString))
+                {
+                    string sqlQuery = "UPDATE Data_User SET Pass = @Pass WHERE UserName = @UserName";
+
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                    {
+                        try
+                        {
+                            connection.Open();
+                            command.Parameters.AddWithValue("@UserName", users.UserName);
+                            command.Parameters.AddWithValue("@Pass", LoginController.GetMD5("123"));
+                            command.ExecuteNonQuery();
+                            check = true;
+                        }
+                        catch
+                        {
+                            check = false;
+                        }
+                    }
+                }
+            }
+            return check;
+        }
     }
 }

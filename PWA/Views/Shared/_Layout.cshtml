@@ -19,7 +19,7 @@
     }
     @if (currentController != "Login")
     {
-        <div class="navbar navbar-expand-lg bg-body-tertiary navbar-color fixed-top" >
+        <div class="navbar navbar-expand-lg bg-body-tertiary navbar-color fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,8 +27,8 @@
                     </button>
                     @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link white" })</li>
                         @if ((string)Session["Role_ID"] == "1")
                         {
@@ -55,13 +55,9 @@
 
     }
 
-    <div class="container body-content" >
+    <div class="container body-content">
         @RenderBody()
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
     <script>
 
         if ('serviceWorker' in navigator) {
@@ -70,5 +66,9 @@
                 .then(function () { console.log('Service Worker Registered'); });
         }
     </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
 </body>
 </html>

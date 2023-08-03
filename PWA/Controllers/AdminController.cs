@@ -38,6 +38,19 @@ namespace PWA.Controllers
             }
         }
 
+        public ActionResult Product()
+        {
+            if (Session["Role_ID"] != null && (string)Session["Role_ID"] == "1")
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
+
 
 
     }

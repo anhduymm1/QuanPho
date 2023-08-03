@@ -3,7 +3,7 @@
 });
 function getListUser() {
     $.ajax({
-        url: 'getListUser',
+        url: '/getListUser',
         type: 'POST',
         dataType: 'json',
         success: function (data) {
@@ -64,7 +64,7 @@ function getListUser() {
                 deleteIcon.className = "bi bi-trash";
                 deleteButton.appendChild(deleteIcon);
                 deleteButton.addEventListener("click", function () {
-                    if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+                    if (confirm("Bạn có chắc chắn muốn xóa người dùng " + item.FullName+" ?")) {
                         // Nếu người dùng chọn "OK" trong hộp thoại confirm, thực hiện xóa người dùng
                         deleteUser(item.UserName);
                     }
@@ -79,8 +79,7 @@ function getListUser() {
                 resetPassIcon.className = "bi bi-arrow-counterclockwise";
                 resetPassButton.appendChild(resetPassIcon);
                 resetPassButton.addEventListener("click", function () {
-                    if (confirm("Bạn có chắc chắn muốn cập nhật mật khẩu của người dùng này?")) {
-                        // Nếu người dùng chọn "OK" trong hộp thoại confirm, thực hiện xóa người dùng
+                    if (confirm("Bạn có chắc chắn muốn cập nhật mật khẩu của " + item.FullName + "?")) {
                         resetPassword(item.UserName);
                     }
                 });
@@ -116,7 +115,7 @@ function createUser() {
     }
 
     $.ajax({
-        url: 'createUser',
+        url: '/createUser',
         type: 'POST',
         dataType: 'json',
         data: data,
@@ -149,7 +148,7 @@ function updateUser() {
     }
 
     $.ajax({
-        url: 'updateUser',
+        url: '/updateUser',
         type: 'POST',
         dataType: 'json',
         data: data,
@@ -171,7 +170,7 @@ function deleteUser(taikhoan) {
     }
 
     $.ajax({
-        url: 'deleteUser',
+        url: '/deleteUser',
         type: 'POST',
         dataType: 'json',
         data: data,

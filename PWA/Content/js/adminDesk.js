@@ -29,10 +29,10 @@ function getListDesk() {
 
                 var trangthai = "";
                 if (item.TableStatus == 1) {
-                    trangthai = "Đã có người"
+                    trangthai = "Bàn đã đặt"
                 }
                 else {
-                    trangthai ="Còn trống"
+                    trangthai ="Bàn chưa đặt"
                 }
 
                 var tableStatusCell = document.createElement("td");
@@ -63,11 +63,11 @@ function getListDesk() {
                 var deleteIcon = document.createElement("i");
                 deleteIcon.className = "bi bi-trash";
                 deleteButton.appendChild(deleteIcon);
-                //deleteButton.addEventListener("click", function () {
-                //    if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
-                //        // Nếu người dùng chọn "OK" trong hộp thoại confirm, thực hiện xóa người dùng
-                //    }
-                //});
+                deleteButton.addEventListener("click", function () {
+                    if (confirm("Bạn có chắc chắn muốn xóa " + item.TableName + " ?")) {
+                        deleteDesk(item.TableID);
+                    }
+                });
                 actionCell.appendChild(deleteButton);
                 row.appendChild(actionCell);
 
@@ -146,6 +146,27 @@ function updateDesk() {
     });
 }
 
+function deleteDesk(id) {
+    const data = {
+        TableID: id,
+    }
+
+    $.ajax({
+        url: '/deleteDesk',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        success: function (data) {
+            if (data == true) {
+                getListDesk()
+            }
+        },
+        error: function () {
+            // Xử lý lỗi nếu có
+            console.log('Không thể lấy dữ liệu từ API.');
+        }
+    });
+}
 document.getElementById("userformmodal").addEventListener("show.bs.modal", function () {
     // Clear the form fields when the modal is shown
     document.getElementById("tableName").value = "";

@@ -115,7 +115,7 @@ function getListDeskByWhere(status) {
         dataType: 'json',
         data: data,
         success: function (data) {
-            var containerDiv = $('.row-cols-lg-3'); // Thay thế bằng selector của container thích hợp
+            var containerDiv = $('.content'); // Thay thế bằng selector của container thích hợp
 
             data.forEach(function (item, index) {
                 var cardDiv = $('<div>', {
@@ -167,6 +167,7 @@ function getListDeskByWhere(status) {
 
                 card.on('click', function () {
                     var userFormModal = new bootstrap.Modal(document.getElementById("userformmodal"));
+                    detailTable(item.TableName)
                     userFormModal.show();
                 });
 
@@ -186,17 +187,24 @@ function getListDeskByWhere(status) {
     });
 }
 
+function detailTable(tenban) {
+    var tableName = document.getElementById("tenban")
+    tableName.innerText = tenban
+    tableName.style.color = 'blue'
+    document.getElementById("save").style.display = 'none'
+    document.getElementById("update").style.display = 'block'
+}
+
+
 $('input[name="table-status"]').on('change', function () {
     var selectedValue = $('input[name="table-status"]:checked').val();
-    var containerDiv = $('.row-cols-lg-3');
+    var containerDiv = $('.content');
     containerDiv.empty(); // Xóa hết nội dung trong containerDiv
     getListDeskByWhere(selectedValue)
 });
 
 document.getElementById("userformmodal").addEventListener("show.bs.modal", function () {
     // Clear the form fields when the modal is shown
-    document.getElementById("tableName").value = "";
-    document.getElementById("inputGroupSelect01").value = "0"; // Set the default role value (change as needed)
 });
 
 

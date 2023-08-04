@@ -7,27 +7,86 @@
 }
 <div class="container" style="height:90%">
     <div class="row flex-lg-nowrap">
-        <div class="col-12 col-lg-auto mb-3" style="width: 200px">
-            <div class="card p-3">
-                <div class="e-navlist e-navlist--active-bg">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0">
-                        <li class="nav-item item-nav-hover">
-                            <a class="nav-link px-2 active" href="/Admin">
-                                <i style="margin-right: 10px" class="bi bi-people"></i><span>Người dùng</span>
-                            </a>
-                        </li>
-                        <li class="nav-item item-nav-hover">
-                            <a class="nav-link px-2" href="/Admin/Product">
-                                <i style="margin-right: 10px" class="bi bi-card-checklist"></i><span>Món</span>
-                            </a>
-                        </li>
-                        <li class="nav-item item-nav-hover">
-                            <a class="nav-link px-2" href="/Admin/Desk">
-                                <i style="margin-right: 10px" class="bi bi-pci-card"></i><span>Bàn</span>
-                            </a>
-                        </li>
-                    </ul>
+        <div class="col-12 col-lg-3 mb-3" > 
+            <div class="col-12 col-lg-12 mb-3 card ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="my-3 d-flex flex-md-column flex-row">
+                            <div class="e-navlist e-navlist--active-bg">
+                                <ul class="navbar-nav me-auto my-2 my-lg-0 d-flex flex-md-column flex-row">
+                                    <li class="nav-item item-nav-hover">
+                                        <a class="nav-link px-2 active" href="/Admin">
+                                            <i style="margin-right: 10px" class="bi bi-people"></i><span>Người dùng</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item item-nav-hover">
+                                        <a class="nav-link px-2" href="/Admin/Product">
+                                            <i style="margin-right: 10px" class="bi bi-card-checklist"></i><span>Món</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item item-nav-hover">
+                                        <a class="nav-link px-2" href="/Admin/Desk">
+                                            <i style="margin-right: 10px" class="bi bi-pci-card"></i><span>Bàn</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
+
+                        <hr class="my-3" />
+                        <div class="text-center px-xl-3">
+                            <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#userformmodal" id="addNewButton">Thêm mới</button>
+                        </div>
+                        <hr class="my-3" />
+                        <div class="e-navlist e-navlist--active-bold">
+                            <ul class="nav">
+                                <li class="nav-item active"><a href="" class="nav-link"><span>All</span> <small>/ 32</small></a></li>
+                                <li class="nav-item"><a href="" class="nav-link"><span>Active</span> <small>/ 16</small></a></li>
+                                <li class="nav-item"><a href="" class="nav-link"><span>Selected</span> <small>/ 0</small></a></li>
+                            </ul>
+                        </div>
+                        <hr class="my-3" />
+                        <div>
+
+                            <div class="input-group mb-3">
+                                <div><input class="form-control w-100" type="text" placeholder="Tên món" value="" /></div>
+                            </div>
+                        </div>
+                        <hr class="my-3" />
+                        <div class="form-group d-flex flex-wrap">
+                            <div class="px-2">
+                                <div class="custom-control custom-radio form-check">
+                                    <input type="radio" class="form-check-input" name="user-status" id="users-status-disabled" checked="" value="-1" />
+                                    <label class="form-label" for="users-status-disabled">TẤT CẢ</label>
+                                </div>
+                            </div>
+                            <div class="px-2">
+                                <div class="custom-control custom-radio form-check">
+                                    <input type="radio" class="form-check-input" name="user-status" id="users-status-active" value="1" />
+                                    <label class="form-label" for="users-status-active">PHỞ SOUP</label>
+                                </div>
+                            </div>
+                            <div class="px-2">
+                                <div class="custom-control custom-radio form-check">
+                                    <input type="radio" class="form-check-input" name="user-status" id="users-status-any" value="2" />
+                                    <label class="form-label" for="users-status-any">CHÉN THÊM</label>
+                                </div>
+                            </div>
+                            <div class="px-2">
+                                <div class="custom-control custom-radio form-check">
+                                    <input type="radio" class="form-check-input" name="user-status" id="users-status-any" value="3" />
+                                    <label class="form-label" for="users-status-any">THỊT THÊM</label>
+                                </div>
+                            </div>
+                            <div class="px-2">
+                                <div class="custom-control custom-radio form-check">
+                                    <input type="radio" class="form-check-input" name="user-status" id="users-status-any" value="4" />
+                                    <label class="form-label" for="users-status-any">CHI TIẾT</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,65 +123,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-center px-xl-3">
-                                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#userformmodal" id="addNewButton">Thêm mới</button>
-                            </div>
-                            <hr class="my-3" />
-                            <div class="e-navlist e-navlist--active-bold">
-                                <ul class="nav">
-                                    <li class="nav-item active"><a href="" class="nav-link"><span>All</span> <small>/ 32</small></a></li>
-                                    <li class="nav-item"><a href="" class="nav-link"><span>Active</span> <small>/ 16</small></a></li>
-                                    <li class="nav-item"><a href="" class="nav-link"><span>Selected</span> <small>/ 0</small></a></li>
-                                </ul>
-                            </div>
-                            <hr class="my-3" />
-                            <div>
-
-                                <div class="input-group mb-3">
-                                    <label class="form-label">Search by Name:</label>
-                                    <div><input class="form-control w-100" type="text" placeholder="Name" value="" /></div>
-                                </div>
-                            </div>
-                            <hr class="my-3" />
-                            <div class="">
-                                <label class="form-label">Nhóm:</label>
-                                <div class="px-2">
-                                    <div class="custom-control custom-radio form-check">
-                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-disabled" checked="" value="-1"/>
-                                        <label class="form-label" for="users-status-disabled">TẤT CẢ</label>
-                                    </div>
-                                </div>
-                                <div class="px-2">
-                                    <div class="custom-control custom-radio form-check">
-                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-active" value="1"/>
-                                        <label class="form-label" for="users-status-active">PHỞ SOUP</label>
-                                    </div>
-                                </div>
-                                <div class="px-2">
-                                    <div class="custom-control custom-radio form-check">
-                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-any"  value="2"/>
-                                        <label class="form-label" for="users-status-any">CHÉN THÊM</label>
-                                    </div>
-                                </div>
-                                <div class="px-2">
-                                    <div class="custom-control custom-radio form-check">
-                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-any" value="3"/>
-                                        <label class="form-label" for="users-status-any">THỊT THÊM</label>
-                                    </div>
-                                </div>
-                                <div class="px-2">
-                                    <div class="custom-control custom-radio form-check">
-                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-any"  value="4"/>
-                                        <label class="form-label" for="users-status-any">CHI TIẾT</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             @*Modal*@
             <div class="modal fade" aria-labelledby="userformmodalLabel" aria-hidden="true" tabindex="-1" id="userformmodal">
@@ -195,7 +196,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @section scripts {
     <script src="~/Content/js/adminProduct.js"></script>

@@ -48,16 +48,17 @@
             </div>
         </div>
         <div class="col">
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6 aos-init aos-animate" data-aos="fade-up">
+            <div class="content row row-cols-lg-4 row-cols-md-3 row-cols-2 text-center justify-content-center px-xl-6 aos-init aos-animate" data-aos="fade-up">
             </div>
         </div>
     </div>
     @*Modal*@
     <div class="modal fade" aria-labelledby="userformmodalLabel" aria-hidden="true" tabindex="-1" id="userformmodal">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tạo người dùng mới</h5>
+                    <h5 class="modal-title">Danh sách order:&ensp;</h5>
+                    <h5 class="modal-title" id="tenban"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -67,60 +68,41 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
+                                        <div class="col" style="display:none">
+                                            <div class="mb-3">
+                                                <input class="form-control" type="text" name="tableID" id="tableID" />
+                                            </div>
+                                        </div>
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label class="form-label">Tài khoản</label>
+                                                <label class="form-label">Món ăn</label>
                                                 <input class="form-control" type="text" name="username" id="username" />
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label class="form-label">Họ tên</label>
+                                                <label class="form-label">Số lượng</label>
                                                 <input class="form-control" type="text" name="name" id="name" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <div class="mb-3">
-                                                <label class="form-label">Số điện thoại</label>
-                                                <input class="form-control" type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" id="phone" />
+                                            <div class="mb-3 ">
+                                                <label class="form-label">Ghi chú</label>
+                                                <input class="form-control" type="text" id="phone" />
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label class="form-label">Vai trò</label>
-                                                <select class="form-select" id="inputGroupSelect01">
-                                                    <option value="1">Quản trị</option>
-                                                    <option selected value="2">Người dùng</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <div class="form-group" id="group-password">
-                                                    <label class="form-label" for="password">Mật khẩu</label>
-                                                    <div class="input-group">
-                                                        <input type="password" id="password" class="form-control" />
-                                                        <div style="display:flex; justify-content:center; align-items:center">
-                                                            <i style="z-index:999;margin-left:-30px" id="togglePassword" class="bi bi-eye-slash"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col d-flex justify-content-end">
-                                    <button class="btn btn-primary" data-bs-dismiss="modal" type="button" aria-label="Close" onclick="createUser()" id="save">Lưu</button>
-                                    <button class="btn btn-success" data-bs-dismiss="modal" type="button" aria-label="Close" id="update" onclick="updateUser()">Cập nhật</button>
+                                        <div class="col">
+                                            <div class="mb-3 ">
+                                                <label class="form-label" style="color:transparent">.</label>
+                                                <button class="btn btn-primary " data-bs-dismiss="modal" type="button" aria-label="Close" onclick="createUser()" id="save">Lưu</button>
+                                                <button class="btn btn-success " data-bs-dismiss="modal" type="button" aria-label="Close" id="update" onclick="updateUser()">Cập nhật</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>

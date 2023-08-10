@@ -180,7 +180,7 @@ function getListDeskByWhere(status) {
                             filterProducts(searchText);
                         });
                     }
-                    detailTable(item.TableName)
+                    detailTable(item.TableName, item.TableID)
 
                 });
 
@@ -200,11 +200,13 @@ function getListDeskByWhere(status) {
     });
 }
 
-function detailTable(tenban) {
+function detailTable(tenban, id) {
     var tableName = document.getElementById("tenban")
     var tableName1 = document.getElementById("tenban1")
+    var tableId = document.getElementById("idban")
     tableName.innerText = tenban
     tableName1.innerText = tenban
+    tableId.innerText = id
     tableName.style.color = 'blue'
     tableName1.style.color = 'blue'
     document.getElementById("save").style.display = 'none'
@@ -222,6 +224,7 @@ $('input[name="table-status"]').on('change', function () {
 document.getElementById("userformmodal").addEventListener("show.bs.modal", function () {
     // Clear the form fields when the modal is shown
 });
+var selectedProducts = [];
 
 function getListProduct(id) {
     var data = {
@@ -245,7 +248,8 @@ function getListProduct(id) {
                 var checkboxInput = $('<input>', {
                     type: 'checkbox',
                     class: 'btn-check',
-                    id: item.ProductID,
+                    autocomplete:"off",
+                    id: "btncheck"+ item.ProductID
                 });
 
                 //// Tạo phần tử <div> chứa nút
@@ -257,7 +261,7 @@ function getListProduct(id) {
                 // Tạo phần tử <div> bên trong nút
                 var innerDiv = $('<div>', {
                     class: 'col shadow p-3 mb-5 rounded btn btn-outline-primary',
-                    id: 'hop' + item.ProductID,
+                    id: 'hopbtncheck' + item.ProductID,
                     style: 'background: #F8F0E5;width: 100%; border: none'
                 });
 
@@ -279,8 +283,8 @@ function getListProduct(id) {
 
                 // Tạo phần tử <label> cho tên sản phẩm
                 var nameLabel = $('<label>', {
-                    class: 'col-8',
-                    for: "btncheckbox" + item.ProductID,
+                    class: 'col-8 productname',
+                    for: "btncheck" + item.ProductID,
                     style: 'display:flex; align-items:center; justify-content:flex-start;text-align: left;',
                     text: item.ProductName
                 });
@@ -290,26 +294,59 @@ function getListProduct(id) {
                 // Tạo phần tử <label> cho giá sản phẩm
                 var priceLabel = $('<label>', {
                     class: 'col-8',
-                    style: 'display:flex; align-items:center; justify-content:flex-start; ',
+                    style: 'display:flex; align-items:center; justify-content:flex-start;',
+                    id: 'gia' + item.ProductID,
                     text: formattedPrice
                 });
 
                 // Tạo phần tử <input> cho số lượng
                 var quantityInput = $('<input>', {
                     type: 'number',
-                    value: '1',
-                    class: 'col-2'
+                    class: 'col-2',
+                    id: 'qtyinput' + item.ProductID,
+                    value: 1,
+                    change: function () {
+                        var newValue = $(this).val();
+                        var productID = $(this).attr('id').replace('qtyinput', ''); // Lấy mã sản phẩm từ ID input
+                        var selectedProduct = selectedProducts.find(function (product) {
+                            return product.ProductID === productID;
+                        });
+
+                        if (selectedProduct) {
+                            selectedProduct.productQtyInput = newValue;
+                        }
+                    }
                 });
+
 
                 checkboxInput.change(function () {
                     var checkboxId = $(this).attr('id'); // Lấy ID của checkbox đã thay đổi
                     var isChecked = $(this).is(':checked'); // Kiểm tra trạng thái của checkbox
-                     var hopElement = $('#hop' + checkboxId); // Tìm phần tử tương ứng theo ID
-
+                    var productID = checkboxId.replace('btncheck', ''); // Lấy mã sản phẩm từ ID checkbox
+                    var productPrice = document.getElementById("gia" + productID).innerText
+                    var productQtyInput1 = document.getElementById("qtyinput" + productID).value
+                    var hopElement = $('#hop' + checkboxId); // Tìm phần tử tương ứng theo ID
+                    var userID = document.getElementById('userID').value;
                     if (isChecked) {
-                        hopElement.css('background-color', 'red');
+                        hopElement.css('background-color', 'green'); // Đặt màu nền thành xanh khi isChecked là true
+
+                        // Tạo đối tượng món được chọn và thêm vào mảng
+                        var selectedProduct = {
+                            ProductID: productID,
+                            OTPrice: productPrice.replace(/[^0-9]/g, ''),
+                            OTQuantity: productQtyInput1,
+                            TableID: document.getElementById("idban").innerText,
+                            UserID: userID
+                            // Các thông tin khác về sản phẩm bạn có thể thêm vào đây
+                        };
+                        selectedProducts.push(selectedProduct);
                     } else {
-                        hopElement.css('background-color', '#F8F0E5');
+                        hopElement.css('background-color', '#F8F0E5'); // Đặt màu nền thành mặc định khi isChecked là false
+
+                        // Xoá đối tượng món khỏi mảng dựa trên productID
+                        selectedProducts = selectedProducts.filter(function (product) {
+                            return product.ProductID !== productID;
+                        });
                     }
                 });
 
@@ -343,19 +380,37 @@ function removeVietnameseDiacritics(str) {
 
 function filterProducts(searchText) {
     var normalizedSearchText = removeVietnameseDiacritics(searchText.toLowerCase());
-    var productLabels = $(".productname");
+   var productLabels = $(".productname");
 
     productLabels.each(function () {
         var productName = $(this).text();
         var normalizedProductName = removeVietnameseDiacritics(productName.toLowerCase());
 
         if (normalizedProductName.indexOf(normalizedSearchText) !== -1) {
-            $(this).closest(".col-6.col-lg-3").show();
+            $(this).closest(".col-12.col-lg-6").show();
         } else {
-            $(this).closest(".col-6.col-lg-3").hide();
+            $(this).closest(".col-12.col-lg-6").hide();
         }
     });
 }
+
+function addOrder() {
+    var data = selectedProducts
+    $.ajax({
+        url: '/addOrderTable',
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        success: function (data) {
+            console.log(data)
+        },
+        error: function () {
+            // Xử lý lỗi nếu có
+            console.log('Không thể lấy dữ liệu từ API.');
+        }
+    });
+}
+
 
 
 

@@ -180,6 +180,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DeskApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderApiController.cs" />
     <Compile Include="Controllers\ProductApiController.cs" />
     <Compile Include="Controllers\UsersApiController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -188,6 +189,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Desk.cs" />
+    <Compile Include="Models\OrderTable.cs" />
     <Compile Include="Models\Pho.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Users.cs" />

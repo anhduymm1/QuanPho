@@ -44,6 +44,7 @@ namespace PWA.Controllers
                                 users.FullName = reader["FullName"].ToString();
                                 users.UserName = reader["UserName"].ToString();
                                 users.Role_ID = reader["Role_ID"].ToString();
+                                users.UserID = Convert.ToInt32(reader["UserID"]);
                                 checked_login = true;
                             }
 
@@ -57,6 +58,7 @@ namespace PWA.Controllers
                     Session["FullName"] = users.FullName;
                     Session["UserName"] = users.UserName;
                     Session["Role_ID"] = users.Role_ID;
+                    Session["UserID"] = users.UserID;
                     return Redirect("Home");
                 }
                 else

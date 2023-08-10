@@ -236,37 +236,98 @@ function getListProduct(id) {
             var containerDiv = $('.listproduct');
             data.forEach(function (item, index) {
                 var cardDiv = $('<div>', {
-                    class: 'col-6 col-lg-3'
+                    class: 'col-12 col-lg-6'
                 });
 
-                var card = $('<div>', {
-                    class: 'mb-3',
-                    style: 'height: 100%'
-                });
+                
 
                 // Tạo một thẻ input checkbox
                 var checkboxInput = $('<input>', {
-                    type: 'radio',
+                    type: 'checkbox',
                     class: 'btn-check',
-                    name: "btnradio",
-                    id: 'btnradio' + item.ProductID,
-                    autocomplete: 'off'
+                    id: item.ProductID,
                 });
 
-                // Tạo một thẻ label kết hợp với input checkbox
-                var checkboxLabel = $('<label>', {
-                    class: 'btn btn-outline-primary productname',
-                    for: 'btnradio' + item.ProductID,
-                    style: 'width:100%; height:80%;display: flex;align-items: center;justify-content: center;',
+                //// Tạo phần tử <div> chứa nút
+                //var outerDiv = $('<div>', {
+                //    class: 'btn btn-outline-primary row',
+                //    style: 'width:100%; border:none;'
+                //});
+
+                // Tạo phần tử <div> bên trong nút
+                var innerDiv = $('<div>', {
+                    class: 'col shadow p-3 mb-5 rounded btn btn-outline-primary',
+                    id: 'hop' + item.ProductID,
+                    style: 'background: #F8F0E5;width: 100%; border: none'
+                });
+
+                var divRow1 = $('<div>', {
+                    class: 'row',
+                });
+
+                var divRow2 = $('<div>', {
+                    class: 'row',
+                });
+
+
+                // Tạo phần tử <img>
+                var image = $('<img>', {
+                    src: './images/pho.png',
+                    class: 'col-3',
+                    style: 'width:100px'
+                });
+
+                // Tạo phần tử <label> cho tên sản phẩm
+                var nameLabel = $('<label>', {
+                    class: 'col-8',
+                    for: "btncheckbox" + item.ProductID,
+                    style: 'display:flex; align-items:center; justify-content:flex-start;text-align: left;',
                     text: item.ProductName
                 });
 
+                var formattedPrice = item.ProductPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+                // Tạo phần tử <label> cho giá sản phẩm
+                var priceLabel = $('<label>', {
+                    class: 'col-8',
+                    style: 'display:flex; align-items:center; justify-content:flex-start; ',
+                    text: formattedPrice
+                });
+
+                // Tạo phần tử <input> cho số lượng
+                var quantityInput = $('<input>', {
+                    type: 'number',
+                    value: '1',
+                    class: 'col-2'
+                });
+
+                checkboxInput.change(function () {
+                    var checkboxId = $(this).attr('id'); // Lấy ID của checkbox đã thay đổi
+                    var isChecked = $(this).is(':checked'); // Kiểm tra trạng thái của checkbox
+                     var hopElement = $('#hop' + checkboxId); // Tìm phần tử tương ứng theo ID
+
+                    if (isChecked) {
+                        hopElement.css('background-color', 'red');
+                    } else {
+                        hopElement.css('background-color', '#F8F0E5');
+                    }
+                });
+
+                divRow1.append(image)
+                divRow1.append(nameLabel)
+
+                divRow2.append(priceLabel)
+                divRow2.append(quantityInput)
+
+                innerDiv.append(divRow1)
+                innerDiv.append(divRow2)
+
+               /* outerDiv.append(innerDiv)*/
                 // Gắn thẻ input checkbox và label vào thẻ card
-                card.append(checkboxInput);
-                card.append(checkboxLabel);
+                cardDiv.append(checkboxInput);
+                cardDiv.append(innerDiv);
 
                 // Gắn thẻ card vào thẻ cardDiv
-                cardDiv.append(card);
                 containerDiv.append(cardDiv);
             });
         },
@@ -295,6 +356,12 @@ function filterProducts(searchText) {
         }
     });
 }
+
+
+
+
+
+
 
 
 

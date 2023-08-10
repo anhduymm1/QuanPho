@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css {
+    <link href="~/Content/css/adminUser.css" rel="stylesheet" />
+}
+
+<div class="container" style="height:90%">
+    <div class="row flex-lg-nowrap">
+        <div class="col-12 col-lg-auto mb-3" style="width: 200px">
+            <div class="card p-3">
+                <div class="e-navlist e-navlist--active-bg">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0">
+                        <li class="nav-item item-nav-hover">
+                            <a class="nav-link px-2 active" href="/Admin">
+                                <i style="margin-right: 10px" class="bi bi-people"></i><span>Người dùng</span>
+                            </a>
+                        </li>
+                        <li class="nav-item item-nav-hover">
+                            <a class="nav-link px-2" href="/Admin/Product">
+                                <i style="margin-right: 10px" class="bi bi-card-checklist"></i><span>Món</span>
+                            </a>
+                        </li>
+                        <li class="nav-item item-nav-hover">
+                            <a class="nav-link px-2" href="/Admin/Desk">
+                                <i style="margin-right: 10px" class="bi bi-pci-card"></i><span>Bàn</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="e-tabs mb-3 px-3">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" href="#">Danh sách người dùng</a></li>
+                </ul>
+            </div>
+            <div class="row flex-lg-nowrap">
+                <div class="col mb-3">
+                    <div class="e-panel card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h6 class="mr-2"><span>Thông tin người dùng</span></h6>
+                            </div>
+                            <div class="e-table">
+                                <div class="table-responsive table-lg mt-3">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th class="sortable">Tài khoản</th>
+                                                <th class="max-width">Họ và tên</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Vai trò</th>
+                                                <th></th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center px-xl-3">
+                                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#userformmodal" id="addNewButton">Thêm mới</button>
+                            </div>
+                            <hr class="my-3" />
+                            <div class="e-navlist e-navlist--active-bold">
+                                <ul class="nav">
+                                    <li class="nav-item active"><a href="" class="nav-link"><span>All</span> <small>/ 32</small></a></li>
+                                    <li class="nav-item"><a href="" class="nav-link"><span>Active</span> <small>/ 16</small></a></li>
+                                    <li class="nav-item"><a href="" class="nav-link"><span>Selected</span> <small>/ 0</small></a></li>
+                                </ul>
+                            </div>
+                            <hr class="my-3" />
+                            <div>
+                                <div class="input-group mb-3">
+                                    <label class="form-label">Date from - to:</label>
+                                    <div>
+                                        <input id="dates-range" class="form-control flatpickr-input" placeholder="01 May 21 - 27 May 21" type="text" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label class="form-label">Search by Name:</label>
+                                    <div><input class="form-control w-100" type="text" placeholder="Name" value="" /></div>
+                                </div>
+                            </div>
+                            <hr class="my-3" />
+                            <div class="">
+                                <label class="form-label">Status:</label>
+                                <div class="px-2">
+                                    <div class="custom-control custom-radio form-check">
+                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-disabled" />
+                                        <label class="form-label" for="users-status-disabled">Disabled</label>
+                                    </div>
+                                </div>
+                                <div class="px-2">
+                                    <div class="custom-control custom-radio form-check">
+                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-active" />
+                                        <label class="form-label" for="users-status-active">Active</label>
+                                    </div>
+                                </div>
+                                <div class="px-2">
+                                    <div class="custom-control custom-radio form-check">
+                                        <input type="radio" class="form-check-input" name="user-status" id="users-status-any" checked="" />
+                                        <label class="form-label" for="users-status-any">Any</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Modal*@
+            <div class="modal fade" aria-labelledby="userformmodalLabel" aria-hidden="true" tabindex="-1" id="userformmodal">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Tạo người dùng mới</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="py-1">
+                                <form class="form" novalidate="">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Tài khoản</label>
+                                                        <input class="form-control" type="text" name="username" id="username"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Họ tên</label>
+                                                        <input class="form-control" type="text" name="name" id="name"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Số điện thoại</label>
+                                                        <input class="form-control" type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" id="phone"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Vai trò</label>
+                                                        <select class="form-select" id="inputGroupSelect01">
+                                                            <option value="1">Quản trị</option>
+                                                            <option selected value="2">Người dùng</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3">
+                                                        <div class="form-group" id="group-password">
+                                                            <label class="form-label" for="password">Mật khẩu</label>
+                                                            <div class="input-group">
+                                                                <input type="password" id="password" class="form-control" />
+                                                                <div style="display:flex; justify-content:center; align-items:center">
+                                                                    <i style="z-index:999;margin-left:-30px" id="togglePassword" class="bi bi-eye-slash"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col d-flex justify-content-end">
+                                            <button class="btn btn-primary" data-bs-dismiss="modal" type="button" aria-label="Close" onclick="createUser()" id="save">Lưu</button>
+                                            <button class="btn btn-success" data-bs-dismiss="modal" type="button" aria-label="Close" id="update" onclick="updateUser()">Cập nhật</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+@section scripts {
+    <script src="~/Content/js/adminUser.js"></script>
+}
+
+

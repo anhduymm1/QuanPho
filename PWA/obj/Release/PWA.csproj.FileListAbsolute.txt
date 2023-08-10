@@ -77,3 +77,17 @@ C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\obj\Release\PWA.csproj.CoreCompileI
 C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\obj\Release\PWA.csproj.CopyComplete
 C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\obj\Release\PWA.dll
 C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\obj\Release\PWA.pdb
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\EntityFramework.dll
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\EntityFramework.SqlServer.dll
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Net.Http.Formatting.dll
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Web.Http.dll
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Web.Http.WebHost.dll
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\EntityFramework.xml
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\EntityFramework.SqlServer.xml
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Net.Http.Formatting.xml
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Web.Http.xml
+C:\Users\Anh Duy\Desktop\web\BackEnd\PWA\PWA\bin\System.Web.Http.WebHost.xml

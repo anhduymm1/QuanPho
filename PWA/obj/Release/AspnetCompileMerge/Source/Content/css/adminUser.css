@@ -1,0 +1,9 @@
+﻿.item-nav-hover:hover {
+    background-color: #a076f9 !important; /* Change to the desired background color on hover */
+    color: white;
+    border-radius:15px;
+}
+
+.color-white{
+    color:white
+}

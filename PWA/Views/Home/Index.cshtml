@@ -54,7 +54,7 @@
     </div>
     @*Modal hóa đơn*@
     <div class="modal fade" aria-labelledby="userformmodalLabel" aria-hidden="true" tabindex="-1" id="userformmodal">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Danh sách order:&ensp;</h5>
@@ -67,29 +67,28 @@
                         <form class="form" novalidate="">
                             <div class="row">
                                 <div class="col">
-                                    <div class="row">
-                                        <div class="col" style="display:none">
+                                    <div class="row detailOrder">
+                                        @*<div class="col-12 col-lg-6">
                                             <div class="mb-3">
-                                                <input class="form-control" type="text" name="tableID" id="tableID" />
+                                                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+                                                <div class="btn btn-outline-primary row" style="width:100%; border:none;">
+                                                    <div class="col shadow p-3 mb-5  rounded" style="background: #F8F0E5 ">
+                                                        <div class="row">
+                                                            <img src="~/images/pho.png" class="col-3" style="width:70px" />
+                                                            <label class="col-8" style="display:flex; align-items:center; justify-content:flex-start">Phở Đặc Biệt</label>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-8" style="display:flex; align-items:center; justify-content:flex-start">50.000 đ</label>
+                                                            <input type="number" value="1" class="col-2" />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label class="form-label">Món ăn</label>
-                                                <input class="form-control" type="text" name="username" id="username" />
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label class="form-label">Số lượng</label>
-                                                <input class="form-control" type="text" name="name" id="name" />
-                                            </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="row">
                                         <div class="col">
                                             <div class="mb-3 ">
-                                                <label class="form-label">Ghi chú</label>
                                                 <input class="form-control" type="text" id="phone" />
                                             </div>
                                         </div>
@@ -111,7 +110,7 @@
         </div>
     </div>
     @*Modal order*@
-    <div class="modal fade" aria-labelledby="userformmodalLabel" aria-hidden="true" tabindex="-1" id="modalorder">
+    <div class="modal fade" aria-labelledby="userformmodalLabel1" aria-hidden="true" tabindex="-1" id="modalorder">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -140,23 +139,7 @@
                                         </div>
                                     </div>
                                     <div class="row listproduct">
-                                        @*<div class="col-12 col-lg-6">
-                                            <div class="mb-3">
-                                                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off"/>
-                                                <div class="btn btn-outline-primary row" style="width:100%; border:none;">
-                                                    <div class="col shadow p-3 mb-5  rounded" style="background: #F8F0E5 ">
-                                                        <div class="row">
-                                                            <img src="~/images/pho.png" class="col-3" style="width:100px"/>
-                                                            <label  class="col-8" style="display:flex; align-items:center; justify-content:flex-start">Phở Đặc Biệt</label>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label  class="col-8" style="display:flex; align-items:center; justify-content:flex-start">50.000 đ</label>
-                                                            <input type="number" value="1" class="col-2" />
-                                                        </div>  
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>*@
+
                                     </div>
                                 </div>
                             </div>

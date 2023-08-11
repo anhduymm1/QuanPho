@@ -19,5 +19,7 @@ namespace PWA.Models
         public int Detail_Status { get; set; }
         public int OTPrice { get; set; }
         public string DetailNote { get; set; }
+        public string ProductName { get; set; }
     }
+
 }

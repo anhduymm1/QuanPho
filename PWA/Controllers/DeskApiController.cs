@@ -262,5 +262,6 @@ namespace PWA.Controllers
             return Json(statiticDesk1);
         }
 
+       
     }
 }
